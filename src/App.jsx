@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import { AlumnoContext } from './contexts/AlumnoContext';
 
 function App() {
   const [nombre, setNombre] = useState('');
+  const navegar = useNavigate();
+  const { guardarNombreAlumno } = useContext(AlumnoContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`¡Bienvenida, ${nombre}!`);
+   if (nombre.trim() !== ""){ 
+    guardarNombreAlumno(nombre);
+    navegar('/juego1');
+   }
   };
 
   return (

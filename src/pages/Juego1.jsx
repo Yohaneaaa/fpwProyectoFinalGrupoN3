@@ -46,7 +46,7 @@ const Juego1 = () => {
   };
 
   const irAlSiguienteJuego = () => {
-    navegar("/juegoDos");
+    navegar("/juegoDos", { state: { puntajeJuego1: puntaje } });
   };
 
   return (

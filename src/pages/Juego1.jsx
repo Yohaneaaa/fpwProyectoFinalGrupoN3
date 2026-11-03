@@ -60,6 +60,15 @@ const Juego1 = () => {
           <h4>
             Ronda {rondaActual + 1} de {animales.length}
           </h4>
+          
+          <div className="text-center" style={{ marginTop: '-15px', marginBottom: '-10px' }}>
+            <img 
+              src={`/image/${animal.nombre.toLowerCase()}.png`} 
+              alt={animal.nombre} 
+              style={{ width: '200px', height: '200px', objectFit: 'contain' }} 
+            />
+          </div>
+
           <h3>{animal.nombre}</h3>
 
           <p>¿Que comida elegis para este animal?</p>

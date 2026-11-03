@@ -13,7 +13,7 @@ export const Enrutador = () => {
                     <Routes>
                         <Route path="/" element={<App />} />
                         <Route path="/juego1" element={<Juego1 />} />
-                        <Route path="/juego2" element={<Juego2 />} />
+                        <Route path="/juegoDos" element={<Juego2 />} />
                     </Routes>
                 </BrowserRouter>
             </ProveedorContext>

@@ -6,7 +6,7 @@ import { AlumnoContext } from '../contexts/AlumnoContext.jsx';
 import { useAutorizaciones } from '../hooks/useAutorizaciones';
 import { rondas } from '../data/juego2.js';
 import AnimalCard from '../components/nivel2.jsx';
-import '../css/FarmGame.css';
+
 
 export default function FarmGame() {
     const navegar = useNavigate();

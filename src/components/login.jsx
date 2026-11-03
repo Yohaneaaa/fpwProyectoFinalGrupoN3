@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import "../css/Login.css";
+import { AlumnoContext } from "../contexts/AlumnoContext";
+import "../css/login.css";
 
 const Login = () => {
   const [nombre, setNombre] = useState("");
-  const [mensajeExito, setMensajeExito] = useState("");
+  const navegar = useNavigate();
+  const { guardarNombreAlumno } = useContext(AlumnoContext);
 
   const gestionarLogin = (e) => {
     e.preventDefault();
     if (nombre.trim() !== "") {
-      setMensajeExito(`¡Bienvenido/a a la granja, ${nombre}!`);
-    
+      guardarNombreAlumno(nombre);
+      navegar("/juego1");
     }
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "400px" }}>
-      <h2 className="text-center mb-4">Aventura en la Granja</h2>
-      
-      {mensajeExito && (
-        <Alert variant="success" className="text-center">
-          {mensajeExito}
-        </Alert>
-      )}
+    <div className="container mt-5 login-contenedor" style={{ maxWidth: "400px" }}>
+      <h2 className="text-center mb-4 login-titulo">♡ Aventura en la Granja ♡</h2>
 
       <Form onSubmit={gestionarLogin} className="login-formulario">
         <Form.Group className="mb-4" controlId="formNombre">
@@ -40,7 +36,7 @@ const Login = () => {
         </Form.Group>
 
         <div className="d-grid">
-          <Button type="submit" variant="success" className="login-boton">
+          <Button type="submit" className="login-boton">
             🚀 Comenzar
           </Button>
         </div>

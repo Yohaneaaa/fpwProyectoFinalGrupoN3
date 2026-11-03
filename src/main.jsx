@@ -1,10 +1,11 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import Login from "../components/Login.jsx";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Enrutador } from './routes/routes'
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Login />
-  </React.StrictMode>
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Enrutador />
+  </StrictMode>,
+)

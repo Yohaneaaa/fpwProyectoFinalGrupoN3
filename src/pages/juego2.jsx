@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import { AlumnoContext } from '../contexts/AlumnoContext.jsx';
@@ -10,6 +10,7 @@ import AnimalCard from '../components/nivel2.jsx';
 
 export default function FarmGame() {
     const navegar = useNavigate();
+    const {state} =useLocation();
     const { nombreAlumno } = useContext(AlumnoContext);
     const { usuarioActivo } = useAutorizaciones();
 
@@ -52,7 +53,9 @@ export default function FarmGame() {
 
     const irAlSiguienteJuego = () => {
         // Si querés enviar tu puntaje a la siguiente pantalla por state:
-        navegar("/juegoTres", { state: { puntajeNivel2: puntos } });
+        navegar("/resultados", {
+            state: { puntajeJuego1: state?.puntajeJuego1 ?? 0, puntajeJuego2: puntos },
+        });
     };
 
     return (
@@ -90,7 +93,7 @@ export default function FarmGame() {
                     <p>Obtuviste {puntos} de 50 puntos posibles.</p>
                     
                     <Button variant="success" onClick={irAlSiguienteJuego}>
-                        Siguiente Nivel
+                        Ver resultados
                     </Button>
                 </div>
             )}

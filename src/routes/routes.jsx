@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "../App";
 import Juego1 from "../pages/Juego1";
 import Juego2 from "../pages/juego2"
+import Resultados from "../pages/Resultados";
 import { ProveedorContext } from "../contexts/AutorizacionesContext";
 import { ProveedorAlumno } from "../contexts/AlumnoContext";
 
@@ -14,6 +15,7 @@ export const Enrutador = () => {
                         <Route path="/" element={<App />} />
                         <Route path="/juego1" element={<Juego1 />} />
                         <Route path="/juegoDos" element={<Juego2 />} />
+                        <Route path="/resultados" element={<Resultados />} />
                     </Routes>
                 </BrowserRouter>
             </ProveedorContext>

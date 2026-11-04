@@ -1,0 +1,107 @@
+.resultados-contenedor {
+  --crema: #FFF8E7;
+  --rojo: #930500;
+  --celeste: #95BBEA;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--crema);
+  position: relative;
+}
+
+.resultados-contenedor > *:not(.confeti) {
+  position: relative;
+  z-index: 1;
+}
+
+.resultados-titulo {
+  color: var(--rojo);
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.resultados-juego {
+  width: 100%;
+  max-width: 420px;
+  background: var(--celeste);
+  color: var(--rojo);
+  border: 3px solid var(--rojo);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--rojo);
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.resultados-total {
+  color: var(--rojo);
+  font-size: 2.4rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.resultados-estrellas {
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+.resultados-mensaje {
+  color: var(--rojo);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 1.5rem;
+}
+
+.btn.resultados-boton {
+  --bs-btn-bg: #930500;
+  --bs-btn-color: #FFF8E7;
+  --bs-btn-border-color: #930500;
+  --bs-btn-hover-bg: #95BBEA;
+  --bs-btn-hover-color: #930500;
+  --bs-btn-hover-border-color: #930500;
+  --bs-btn-active-bg: #95BBEA;
+  --bs-btn-active-color: #930500;
+  --bs-btn-active-border-color: #930500;
+
+  background-color: #930500;
+  color: #FFF8E7;
+  border: 3px solid #930500;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  transition: transform 0.1s ease;
+}
+
+.btn.resultados-boton:hover,
+.btn.resultados-boton:active {
+  background-color: #95BBEA;
+  color: #930500;
+  transform: scale(1.05);
+}
+
+/* Confeti */
+.confeti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.confeti span {
+  position: absolute;
+  top: -40px;
+  font-size: 1.8rem;
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes caer {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}

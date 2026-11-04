@@ -38,3 +38,13 @@
 - Utilicé la IA como apoyo para entender errores de consola complejos que no conocía y para comprender mejor la lógica de ciertas partes del código que presentaban fallas.
 
 - Trabajo propio: integré y adapté código de mis trabajos anteriores y apliqué las correcciones correspondientes para resolver el proyecto.
+
+## Estudiante: Miranda Sara Barbara
+## Pantalla 4- Resultados
+## Uso de la IA: Claude 
+- Utilicé la IA como apoyo para planificar la pantalla de resultados entender cómo se pasan los puntajes entre pantallas mediante el estado de la navegación de React Router
+
+- Para poder armar la animación de confeti con CSS. 
+
+- Trabajo propio:
+ - Me encargué de la pantalla 4 (Resultados): revisé el código de mis compañeras para integrarla sin modificar su lógica, adapté el Juego 2 para que envíe ambos puntajes a la pantalla final, y le di estilo con la paleta de colores del proyecto. 

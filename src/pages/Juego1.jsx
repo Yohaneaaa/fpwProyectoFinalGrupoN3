@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { AlumnoContext } from "../contexts/AlumnoContext.jsx";
 import { useAutorizaciones } from "../hooks/useAutorizaciones";
-import { animales } from "../data/animales.js";
+import { animales } from "../../public/data/animales.js";
 import { useNavigate } from "react-router-dom";
 
 

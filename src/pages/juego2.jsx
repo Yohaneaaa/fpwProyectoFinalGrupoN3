@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import { AlumnoContext } from '../contexts/AlumnoContext.jsx';
 import { useAutorizaciones } from '../hooks/useAutorizaciones';
-import { rondas } from '../data/juego2.js';
+import { rondas } from '../../public/data/juego2.js';
 import AnimalCard from '../components/nivel2.jsx';
 
 

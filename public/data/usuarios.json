@@ -1,0 +1,9 @@
+[
+    { "id": 1, "nombre": "Gustavo", "user": "gustavo@mail.com", "password": "abcd", "rol": "admin" },
+    { "id": 1, "nombre": "Jose", "user": "jose@mail.com", "password": "efgh", "rol": "admin" },
+    { "id": 2, "nombre": "Kevin", "user": "kevin@mail.com", "password": "keke", "rol": "usuario" },
+    { "id": 2, "nombre": "Sara", "user": "sara@mail.com", "password": "sarita", "rol": "usuario" },
+    { "id": 2, "nombre": "Eduardo", "user": "eduardo@mail.com", "password": "edu", "rol": "usuario" },
+    { "id": 2, "nombre": "Estefani", "user": "tefo@mail.com", "password": "tefo", "rol": "usuario" },
+    { "id": 2, "nombre": "Anahi", "user": "anahi@mail.com", "password": "143n", "rol": "usuario" }
+]

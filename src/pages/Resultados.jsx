@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { AlumnoContext } from "../contexts/AlumnoContext.jsx";
 import { useAutorizaciones } from "../hooks/useAutorizaciones";
-import { guardarPuntaje } from "../services/alumnosService"; 
+// import { guardarPuntaje } from "../services/alumnosService"; 
 import "../css/resultados.css";
 
 const piezasConfeti = Array.from({ length: 30 }, (_, i) => ({
@@ -29,8 +29,8 @@ export default function Resultados() {
 
   useEffect(() => {
     if (state && usuarioActivo) {
-      guardarPuntaje(usuarioActivo.user, 1, state.puntajeJuego1);
-      guardarPuntaje(usuarioActivo.user, 2, state.puntajeJuego2);
+      // guardarPuntaje(usuarioActivo.user, 1, state.puntajeJuego1);
+      // guardarPuntaje(usuarioActivo.user, 2, state.puntajeJuego2);
     }
   }, []);
 

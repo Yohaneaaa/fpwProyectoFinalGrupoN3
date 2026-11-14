@@ -10,6 +10,7 @@ import ProtectorRuta from "../components/ProtectorRuta";
 import { ProveedorContext } from "../contexts/AutorizacionesContext";
 import { ProveedorAlumno } from "../contexts/AlumnoContext";
 
+import ResultadosJugadores from "../pages/ResultadosJugadores";
 
 export const routes = createBrowserRouter([
   {
@@ -20,19 +21,43 @@ export const routes = createBrowserRouter([
       { index: true, element: <Login /> },
       {
         path: "juego1",
-        element: <ProtectorRuta><Juego1 /></ProtectorRuta>,
+        element: (
+          <ProtectorRuta>
+            <Juego1 />
+          </ProtectorRuta>
+        ),
       },
       {
         path: "juegodos",
-        element: <ProtectorRuta><Juego2 /></ProtectorRuta>,
+        element: (
+          <ProtectorRuta>
+            <Juego2 />
+          </ProtectorRuta>
+        ),
+      },
+      {
+        path: "resultados-jugadores",
+        element: (
+          <ProtectorRuta rolRequerido="admin">
+            <ResultadosJugadores />
+          </ProtectorRuta>
+        ),
       },
       {
         path: "resultados",
-        element: <ProtectorRuta><Resultados /></ProtectorRuta>,
+        element: (
+          <ProtectorRuta>
+            <Resultados />
+          </ProtectorRuta>
+        ),
       },
       {
         path: "docente",
-        element: <ProtectorRuta rolRequerido="admin"><PanelDocente /></ProtectorRuta>,
+        element: (
+          <ProtectorRuta rolRequerido="admin">
+            <PanelDocente />
+          </ProtectorRuta>
+        ),
       },
     ],
   },

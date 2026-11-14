@@ -32,7 +32,7 @@ const Login = () => {
             guardarSesion(usuarioEnSesion);
 
             if (usuarioEnSesion.rol === "admin") {
-                navegar("/otrapagina"); 
+                navegar("/docente"); 
             } else {
                 navegar("/juego1"); 
             }

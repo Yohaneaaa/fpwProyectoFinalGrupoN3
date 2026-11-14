@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { AlumnoContext } from "../contexts/AlumnoContext.jsx";
 import { useAutorizaciones } from "../hooks/useAutorizaciones";
+import { guardarPuntaje } from "../services/alumnosService"; 
 import "../css/resultados.css";
 
 const piezasConfeti = Array.from({ length: 30 }, (_, i) => ({
@@ -24,7 +25,14 @@ export default function Resultados() {
   const navegar = useNavigate();
   const { state } = useLocation();
   const { nombreAlumno, limpiarNombreAlumno } = useContext(AlumnoContext);
-  const { usuarioActivo } = useAutorizaciones();
+  const { usuarioActivo, cerrarSesion } = useAutorizaciones(); 
+
+  useEffect(() => {
+    if (state && usuarioActivo) {
+      guardarPuntaje(usuarioActivo.user, 1, state.puntajeJuego1);
+      guardarPuntaje(usuarioActivo.user, 2, state.puntajeJuego2);
+    }
+  }, []);
 
   if (!state) return <Navigate to="/" replace />;
 
@@ -35,6 +43,7 @@ export default function Resultados() {
 
   const jugarDeNuevo = () => {
     limpiarNombreAlumno();
+    cerrarSesion(); 
     navegar("/");
   };
 

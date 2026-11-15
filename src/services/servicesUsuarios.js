@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// CRUD Usuarios
 export const listarUsuarios = async () => {
     try {
         const respuesta = await axios.get('/data/usuarios.json');
@@ -10,7 +9,6 @@ export const listarUsuarios = async () => {
     }
 };
 
-// Sesión
 export const guardarUsuarioEnSesion = (usuario) => {
     sessionStorage.setItem("usuarioEnSesion", JSON.stringify(usuario));
 };

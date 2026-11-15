@@ -17,7 +17,6 @@ const FarmGame = () => {
 
   const nombreMostrar = usuarioActivo ? usuarioActivo.nombre : nombreAlumno;
 
-  // nivel 2
   const [rondaActualIndex, setRondaActualIndex] = useState(0);
   const [puntos, setPuntos] = useState(0);
   const [mensaje, setMensaje] = useState("");

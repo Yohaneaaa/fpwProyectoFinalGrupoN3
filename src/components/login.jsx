@@ -45,47 +45,54 @@ const Login = () => {
   };
 
   return (
-    <div
-      className="container mt-5 login-contenedor"
-      style={{ maxWidth: "400px" }}
-    >
-      <h2 className="text-center mb-4 login-titulo">
-        ♡ Aventura en la Granja ♡
-      </h2>
+    <div className="login-pagina">
+      <div className="login-bienvenida">
+        <h1>¡Hola, pequeño granjero!</h1>
+        <p>
+          Descubrí qué come cada animal y cuál no pertenece a la granja.
+          ¡Jugá, sumá puntos y ganá estrellas!
+        </p>
+      </div>
+      
+      <div className="login-contenedor">
+        <h2 className="text-center mb-4 login-titulo">
+          ♡ Aventura en la Granja ♡
+        </h2>
 
-      {error && <Alert variant="danger">{error}</Alert>}
+        {error && <Alert variant="danger">{error}</Alert>}
 
-      <Form onSubmit={gestionarLogin} className="login-formulario">
-        <Form.Group className="mb-3" controlId="formUser">
-          <Form.Label className="login-etiqueta">Usuario o Nombre:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Escribí tu usuario aquí"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-            className="login-campo"
-            required
-          />
-        </Form.Group>
+        <Form onSubmit={gestionarLogin} className="login-formulario">
+          <Form.Group className="mb-3" controlId="formUser">
+            <Form.Label className="login-etiqueta">Usuario o Nombre:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Escribí tu usuario aquí"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              className="login-campo"
+              required
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-4" controlId="formPassword">
-          <Form.Label className="login-etiqueta">Contraseña:</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Escribí tu contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-campo"
-            required
-          />
-        </Form.Group>
+          <Form.Group className="mb-4" controlId="formPassword">
+            <Form.Label className="login-etiqueta">Contraseña:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Escribí tu contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-campo"
+              required
+            />
+          </Form.Group>
 
-        <div className="d-grid">
-          <Button type="submit" className="login-boton">
-            🚀 Comenzar
-          </Button>
-        </div>
-      </Form>
+          <div className="d-grid">
+            <Button type="submit" className="login-boton">
+              🚀 Comenzar
+            </Button>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AutorizacionesContext } from "../contexts/AutorizacionesContext";
 
-// usar
 export const useAutorizaciones = () => {
  
   const contexto = useContext(AutorizacionesContext);

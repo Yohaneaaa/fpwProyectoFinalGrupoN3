@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useAutorizaciones } from "../hooks/useAutorizaciones";
 import { obtenerPuntajes, obtenerBajas, darDeBajaUsuario } from "../services/alumnosService";
-//import TarjetaAlumno from "../components/TarjetaAlumno";
+import TarjetaAlumno from "../components/TarjetaAlumno";
 
 const PanelDocente = () => {
   const navegar = useNavigate();
@@ -52,7 +52,7 @@ const PanelDocente = () => {
 
   const darDeBaja = (user) => {
     if (window.confirm("¿Seguro que querés dar de baja a este alumno?")) {
-      darDeBajaUsuario(user); // se anota en localStorage
+      darDeBajaUsuario(user);
       // filter devuelve una lista NUEVA sin ese alumno (no se modifica la original)
       setAlumnos(alumnos.filter((a) => a.user !== user));
     }

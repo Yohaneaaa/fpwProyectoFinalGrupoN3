@@ -9,7 +9,7 @@ import AnimalCard from "../components/nivel2.jsx";
 
 import { guardarIntento } from "../services/servicesResultados.js";
 
-export default function FarmGame() {
+const FarmGame = () => {
   const navegar = useNavigate();
   const { state } = useLocation();
   const { nombreAlumno } = useContext(AlumnoContext);
@@ -111,4 +111,6 @@ export default function FarmGame() {
       )}
     </Container>
   );
-}
+};
+
+export default FarmGame;

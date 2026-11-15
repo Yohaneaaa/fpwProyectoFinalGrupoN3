@@ -18,24 +18,36 @@ const PanelDocente = () => {
   const [error, setError] = useState(false);
 
   // Al abrir la pantalla: lee public/data/usuarios.json con Axios, se queda
-  // con los niños (rol "usuario"), les saca los dados de baja y les agrega
-  // sus puntajes guardados en localStorage.
+  // con los usuarios, filtra los dados de baja y busca el puntaje MÁXIMO en localStorage.
   useEffect(() => {
     axios
       .get("/data/usuarios.json")
       .then((respuesta) => {
-        const puntajes = obtenerPuntajes();
+        const puntajesArray = obtenerPuntajes(); // Retorna el array del localStorage
         const bajas = obtenerBajas();
 
         const lista = respuesta.data
           .filter((u) => u.rol === "usuario" && !bajas.includes(u.user))
           .map((u) => {
-            const p = puntajes[u.user] || {};
+            // Buscamos todas las partidas registradas de este alumno por su nombre
+            const registrosAlumno = puntajesArray.filter(
+              (p) => p.nombre && p.nombre.toLowerCase() === u.nombre.toLowerCase()
+            );
+
+            let maxJuego1 = 0;
+            let maxJuego2 = 0;
+
+            if (registrosAlumno.length > 0) {
+              // Obtenemos el puntaje más alto (Math.max) de todas sus partidas jugadas
+              maxJuego1 = Math.max(...registrosAlumno.map((reg) => Number(reg.puntajeJuego1) || 0));
+              maxJuego2 = Math.max(...registrosAlumno.map((reg) => Number(reg.puntajeJuego2) || 0));
+            }
+
             return {
               user: u.user,
               nombre: u.nombre,
-              puntajeJuego1: p.puntajeJuego1 || 0,
-              puntajeJuego2: p.puntajeJuego2 || 0,
+              puntajeJuego1: maxJuego1,
+              puntajeJuego2: maxJuego2,
             };
           });
 
@@ -52,8 +64,7 @@ const PanelDocente = () => {
 
   const darDeBaja = (user) => {
     if (window.confirm("¿Seguro que querés dar de baja a este alumno?")) {
-      darDeBajaUsuario(user);
-      // filter devuelve una lista NUEVA sin ese alumno (no se modifica la original)
+      darDeBajaUsuario(user); // Se anota en localStorage
       setAlumnos(alumnos.filter((a) => a.user !== user));
     }
   };

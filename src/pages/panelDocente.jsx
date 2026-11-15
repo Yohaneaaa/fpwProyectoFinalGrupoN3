@@ -17,28 +17,30 @@ const PanelDocente = () => {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
 
-  // Al abrir la pantalla: lee public/data/usuarios.json con Axios, se queda
-  // con los usuarios, filtra los dados de baja y busca el puntaje MÁXIMO en localStorage.
   useEffect(() => {
     axios
       .get("/data/usuarios.json")
       .then((respuesta) => {
-        const puntajesArray = obtenerPuntajes(); // Retorna el array del localStorage
+        const puntajesArray = obtenerPuntajes();
         const bajas = obtenerBajas();
 
         const lista = respuesta.data
           .filter((u) => u.rol === "usuario" && !bajas.includes(u.user))
           .map((u) => {
-            // Buscamos todas las partidas registradas de este alumno por su nombre
-            const registrosAlumno = puntajesArray.filter(
-              (p) => p.nombre && p.nombre.toLowerCase() === u.nombre.toLowerCase()
-            );
+            // Buscamos coincidencias flexibles por nombre, user o id
+            const registrosAlumno = puntajesArray.filter((p) => {
+              const nombreMatch =
+                p.nombre && u.nombre && p.nombre.trim().toLowerCase() === u.nombre.trim().toLowerCase();
+              const userMatch =
+                p.user && u.user && p.user.trim().toLowerCase() === u.user.trim().toLowerCase();
+              const idMatch = p.id && u.id && String(p.id) === String(u.id);
+              return nombreMatch || userMatch || idMatch;
+            });
 
             let maxJuego1 = 0;
             let maxJuego2 = 0;
 
             if (registrosAlumno.length > 0) {
-              // Obtenemos el puntaje más alto (Math.max) de todas sus partidas jugadas
               maxJuego1 = Math.max(...registrosAlumno.map((reg) => Number(reg.puntajeJuego1) || 0));
               maxJuego2 = Math.max(...registrosAlumno.map((reg) => Number(reg.puntajeJuego2) || 0));
             }
@@ -52,9 +54,13 @@ const PanelDocente = () => {
           });
 
         setAlumnos(lista);
+        setCargando(false);
       })
-      .catch(() => setError(true))
-      .finally(() => setCargando(false));
+      .catch((err) => {
+        console.error("Error al cargar alumnos:", err);
+        setError(true);
+        setCargando(false);
+      });
   }, []);
 
   const salir = () => {
@@ -64,7 +70,7 @@ const PanelDocente = () => {
 
   const darDeBaja = (user) => {
     if (window.confirm("¿Seguro que querés dar de baja a este alumno?")) {
-      darDeBajaUsuario(user); // Se anota en localStorage
+      darDeBajaUsuario(user);
       setAlumnos(alumnos.filter((a) => a.user !== user));
     }
   };
@@ -96,9 +102,7 @@ const PanelDocente = () => {
           <p className="panel-docente-cantidad">Alumnos registrados: {alumnos.length}</p>
 
           {alumnos.length === 0 ? (
-            <p className="panel-docente-vacio">
-              No hay alumnos para mostrar.
-            </p>
+            <p className="panel-docente-vacio">No hay alumnos para mostrar.</p>
           ) : (
             <Row className="g-3">
               {alumnos.map((alumno) => (

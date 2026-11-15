@@ -1,36 +1,39 @@
-const CLAVE_PUNTAJES = "puntajesAlumnos";
-const CLAVE_BAJAS = "alumnosBajas";
-
-/**
- * Obtiene el diccionario de puntajes desde localStorage.
- * Estructura esperada: { "usuario1": { puntajeJuego1: 10, puntajeJuego2: 15 }, ... }
- */
 export const obtenerPuntajes = () => {
   try {
-    const datos = localStorage.getItem(CLAVE_PUNTAJES);
-    return datos ? JSON.parse(datos) : {};
+    let acumuladorPuntajes = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const clave = localStorage.key(i);
+      const dato = localStorage.getItem(clave);
+      try {
+        const parsed = JSON.parse(dato);
+        if (Array.isArray(parsed)) {
+          acumuladorPuntajes = [...acumuladorPuntajes, ...parsed];
+        } else if (parsed && typeof parsed === "object") {
+          acumuladorPuntajes.push(parsed);
+        }
+      } catch (e) {
+        // Si no es un JSON válido, se ignora
+      }
+    }
+    return acumuladorPuntajes;
   } catch (error) {
-    console.error("Error al leer puntajes de localStorage:", error);
-    return {};
-  }
-};
-
-/**
- * Obtiene la lista de nombres de usuario que han sido dados de baja.
- */
-export const obtenerBajas = () => {
-  try {
-    const datos = localStorage.getItem(CLAVE_BAJAS);
-    return datos ? JSON.parse(datos) : [];
-  } catch (error) {
-    console.error("Error al leer bajas de localStorage:", error);
+    console.error("Error al obtener puntajes:", error);
     return [];
   }
 };
 
-/**
- * Da de baja a un alumno guardando su identificador en localStorage.
- */
+const CLAVE_BAJAS = "fpw_alumnos_bajas";
+
+export const obtenerBajas = () => {
+  try {
+    const datos = localStorage.getItem(CLAVE_BAJAS);
+    const parsed = datos ? JSON.parse(datos) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+};
+
 export const darDeBajaUsuario = (user) => {
   try {
     const bajasActuales = obtenerBajas();
@@ -39,6 +42,6 @@ export const darDeBajaUsuario = (user) => {
       localStorage.setItem(CLAVE_BAJAS, JSON.stringify(bajasActuales));
     }
   } catch (error) {
-    console.error("Error al guardar la baja en localStorage:", error);
+    console.error("Error al guardar la baja:", error);
   }
 };

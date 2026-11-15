@@ -28,9 +28,10 @@ export default function Resultados() {
   const { usuarioActivo, cerrarSesion } = useAutorizaciones(); 
 
   useEffect(() => {
+    new Audio("/sound/final.mp3").play().catch(() => {}); 
     if (state && usuarioActivo) {
-      // guardarPuntaje(usuarioActivo.user, 1, state.puntajeJuego1);
-      // guardarPuntaje(usuarioActivo.user, 2, state.puntajeJuego2);
+      //guardarPuntaje(usuarioActivo.user, 1, state.puntajeJuego1);
+      //guardarPuntaje(usuarioActivo.user, 2, state.puntajeJuego2);
     }
   }, []);
 

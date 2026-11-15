@@ -27,7 +27,7 @@ const PanelDocente = () => {
         const lista = respuesta.data
           .filter((u) => u.rol === "usuario" && !bajas.includes(u.user))
           .map((u) => {
-            // Buscamos coincidencias flexibles por nombre, user o id
+     
             const registrosAlumno = puntajesArray.filter((p) => {
               const nombreMatch =
                 p.nombre && u.nombre && p.nombre.trim().toLowerCase() === u.nombre.trim().toLowerCase();

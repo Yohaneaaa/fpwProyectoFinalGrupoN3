@@ -22,15 +22,23 @@ const Juego1 = () => {
 
   const animal = animales[rondaActual];
 
-  const responder = (opcion) => {
+   const responder = (opcion) => {
     if (respondida === false) {
       setRespondida(true);
 
       if (animal.respuestasCorrectas.includes(opcion)) {
         setPuntaje(puntaje + 10);
         setMensaje(`Correcto. ¡${animal.nombre} comió!`);
+
+        const sonido = new Audio("/sound/yey.mp3");
+        sonido.volume = 1;
+        sonido.play().catch((e) => console.log("Error audio:", e));
       } else {
         setMensaje(`¡Esa no es su comida!`);
+
+        const sonido = new Audio("/sound/uh.mp3");
+        sonido.volume = 1;
+        sonido.play().catch((e) => console.log("Error audio:", e));
       }
     }
   };
@@ -44,7 +52,7 @@ const Juego1 = () => {
       setJuegoTerminado(true);
     }
   };
-
+  
   const irAlSiguienteJuego = () => {
     navegar("/juegoDos", { state: { puntajeJuego1: puntaje } });
   };

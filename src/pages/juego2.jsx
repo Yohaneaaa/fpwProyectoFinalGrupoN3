@@ -32,13 +32,20 @@ const FarmGame = () => {
 
     const esCorrecto = nombreAnimal === datosRonda.intruso;
 
-    if (esCorrecto) {
-      setPuntos((prev) => prev + 10);
-      setMensaje("¡Sacaste al intruso! La granja está a salvo. (+10 pts)");
-    } else {
-      setMensaje("Incorrecto. Ese sí es de la granja.");
-    }
+   if (esCorrecto) {
+  setPuntos((prev) => prev + 10);
+  setMensaje("¡Sacaste al intruso! La granja está a salvo. (+10 pts)");
 
+  const sonido = new Audio("/sound/yey.mp3");
+  sonido.volume = 1;
+  sonido.play().catch((e) => console.log("Error audio:", e));
+} else {
+  setMensaje("Incorrecto. Ese sí es de la granja.");
+
+  const sonido = new Audio("/sound/uh.mp3");
+  sonido.volume = 1;
+  sonido.play().catch((e) => console.log("Error audio:", e));
+}
     setTimeout(() => {
       const siguienteRonda = rondaActualIndex + 1;
       if (siguienteRonda < rondas.length) {
@@ -59,7 +66,7 @@ const FarmGame = () => {
       puntajeJuego1: state?.puntajeJuego1 ?? 0,
       puntajeJuego2: puntos,
     });
-    // Si querés enviar tu puntaje a la siguiente pantalla por state:
+   
     navegar("/resultados", {
       state: {
         puntajeJuego1: state?.puntajeJuego1 ?? 0,

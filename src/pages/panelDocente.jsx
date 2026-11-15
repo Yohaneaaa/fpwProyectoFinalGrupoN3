@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useAutorizaciones } from "../hooks/useAutorizaciones";
 import { obtenerPuntajes, obtenerBajas, darDeBajaUsuario } from "../services/alumnosService";
-import TarjetaAlumno from "../components/TarjetaAlumno";
+//import TarjetaAlumno from "../components/TarjetaAlumno";
 
 const PanelDocente = () => {
   const navegar = useNavigate();
